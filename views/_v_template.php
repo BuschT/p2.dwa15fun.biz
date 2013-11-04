@@ -17,7 +17,6 @@
 </head>
 
 <body>
-
 	<div class="container">
 	  <div class="header">
 		<ul class="nav nav-pills pull-right">
@@ -37,8 +36,10 @@
 	  </div>
 	  <div class="content_options">
 	  	<ul class="nav nav-pills">
-	  		<li><a href="/users">All Users</a></li>
-	  		<li><a href="/posts/users">Users You Follow</a></li>
+	  		<li><a href="/posts">Latest Activity</a></li>
+	  		<li><a href="/posts/add">Add Post</a></li>
+	  		<li><a href="/posts/users">Users</a></li>
+	  		<li><a href="/posts/manage">Manage Posts</a></li>
 	  	</ul>
 	  </div>
 	  <div class="jumbotron">
@@ -58,6 +59,7 @@
 
 	<!-- placed at end of file so code page loads faster -->
 	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="/js/blogtastic.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 
 </body>
