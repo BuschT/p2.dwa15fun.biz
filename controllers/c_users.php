@@ -9,16 +9,37 @@ class users_controller extends base_controller {
         echo "This is the index page";
     }
 
-  	public function signup() {
+  	public function signup($error = NULL, $duplicate = NULL) {
 		# Setup view
 			$this->template->content = View::instance('v_users_signup');
 			$this->template->title   = "Sign Up";
+			$this->template->content->error = $error;
+			$this->template->content->duplicate = $duplicate;
 
 		# Render template
 			echo $this->template;
     }
 
     public function p_signup() {
+
+    	# Just in case they have JS disabled, don't let them sign up without proper data
+    	if (trim($_POST['first_name']) == false || trim($_POST['last_name']) == false
+    		|| trim($_POST['email']) == false || trim($_POST['password']) == false){
+    			# Send them back to the signup page
+	        	Router::redirect("/users/signup/error");
+	    }
+
+	    # Make sure this user doesn't already exist!
+		$q = "SELECT token
+			        FROM users
+			        WHERE email = '".$_POST['email']."'";
+
+		$existing_user = DB::instance(DB_NAME)->select_field($q);
+		# If we find a matching user, we can't sign them up
+	    if($existing_user) {
+			Router::redirect("/users/signup/duplicate");
+		}
+
 	  	# More data we want stored with the user
 		$_POST['created']  = Time::now();
 		$_POST['modified'] = Time::now();
@@ -34,7 +55,7 @@ class users_controller extends base_controller {
 
 		# For now, just confirm they've signed up -
 		# You should eventually make a proper View for this
-    	echo 'You\'re signed up';
+    	Router::redirect("/users/login");
     }
 
     public function login($error = NULL) {
@@ -84,8 +105,8 @@ class users_controller extends base_controller {
 	        */
 	        setcookie("token", $token, strtotime('+1 year'), '/');
 
-	        # Send them to the main page - or whever you want them to go
-	        Router::redirect("/");
+	        # Send them to the posts page
+	        Router::redirect("/posts");
 
 	    }
 

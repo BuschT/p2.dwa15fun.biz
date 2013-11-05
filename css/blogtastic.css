@@ -1,0 +1,81 @@
+.section_intro {
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+.entry_form {
+	width: 60%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.entry_input {
+	float:right;
+}
+
+.text_label {
+	float:left;
+	font-size: 18px;
+}
+
+.jumbotron {
+	padding-top: 15px;	
+}
+
+input {
+	font-size: 16px;
+}
+
+.user_post {
+	display: block;
+	margin-bottom: 20px;
+	background-color: #FFFFCC;
+	border:2px solid;
+	border-radius:25px;
+}
+
+.user_item {
+	background-color: #FFFFCC;
+	margin-bottom: 20px;
+}
+
+.user_post div {
+	text-align:left;
+	position: relative;
+	clear: both;
+	line-height: 25px;
+}
+
+#user_post_username {
+	font-size: 18px;
+	text-color: #000033;
+}
+
+#user_post_content {
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#user_post_datetime {
+	font-size: 16px;
+}	
+
+#newpost_content {
+	width: 100%;
+	height: 200px;
+	resize: none;
+	line-height: 25px;
+}
+
+#user_item_name  {
+	float: left;
+}
+
+#user_item_follow {
+	float: right;
+}
+	
+#user_item_content {
+	margin-left: 15px;
+}
+

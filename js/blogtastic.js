@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-	alert("OK");
+
 	$("#form_signup").submit(function(e){
 		if (!validateSignUpFields()){
 			e.preventDefault();
@@ -22,7 +22,7 @@ $( document ).ready(function() {
 
 function validateNewPost(){
 	if ($('#newpost_content').val().length >200){
-		alert("Please limit your post content to maximum 200 characters");
+		$(".error").html("Please limit your post content to maximum 200 characters");
 		return false;
 	}
 	if ($('#newpost_content').val().length <= 0){
@@ -34,11 +34,11 @@ function validateNewPost(){
 
 function validateSignInFields(){
 	if ($.trim($('#signin_email').val()) == '' || $.trim($('#signin_password').val()) == ''){
-		alert("Email and Password Fields May Not Be Empty");
+		$(".error").html("Email and Password Fields May Not Be Empty");
 		return false;
 	}
 	if ($.trim($('#signin_email').val()).indexOf("@") == -1){
-		alert("You did not enter a valid email.");
+		$(".error").html("You did not enter a valid email.");
 		return false;
 	}
 	return true;
@@ -47,15 +47,15 @@ function validateSignInFields(){
 function validateSignUpFields(){
 	if ($.trim($('#signup_firstname').val()) == '' || $.trim($('#signup_lastname').val()) == ''
 		|| $.trim($('#signup_email').val()) == '' || $.trim($('#signup_password').val()) == ''){
-		alert("No Fields May Be Empty");
+		$(".error").html("No Fields May Be Empty");
 		return false;
 	}
 	if ($.trim($('#signup_email').val()).indexOf("@") == -1){
-		alert("Please enter a valid email.");
+		$(".error").html("Please enter a valid email.");
 		return false;
 	}
 	if ($('#signup_password').val().length <6){
-		alert("Your password should be at least six characters");
+		$(".error").html("Your password should be at least six characters");
 		return false;
 	}
 	return true;

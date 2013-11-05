@@ -1,21 +1,37 @@
 <form method='POST' action='/users/p_signup' id="form_signup">
 
-    First Name<br>
-    <input type='text' name='first_name' id="signup_firstname">
-    <br><br>
+	<p class="section_intro">Please provide the following information to sign up:</p>
+	<div class="entry_form">
+		<div class="text_label">First Name</div>
+		<input type='text' name='first_name' class="entry_input" id="signup_firstname">
+		<br><br>
 
-    Last Name<br>
-    <input type='text' name='last_name' id="signup_lastname">
-    <br><br>
+		<div class="text_label">Last Name</div>
+		<input type='text' name='last_name' class="entry_input" id="signup_lastname">
+		<br><br>
 
-    Email<br>
-    <input type='text' name='email' id="signup_email">
-    <br><br>
+		<div class="text_label">Email</div>
+		<input type='text' name='email' class="entry_input" id="signup_email">
+		<br><br>
 
-    Password<br>
-    <input type='password' name='password' id="signup_password">
-    <br><br>
+		<div class="text_label">Password</div>
+		<input type='password' name='password' class="entry_input" id="signup_password">
+		<br><br>
+	</div>
 
     <input type='submit' value='Sign up'>
 
+	<?php if(isset($error)): ?>
+		<div class='error'>
+			Signup failed. Please make sure you fill out all forms properly and turn your javascript on!
+		</div>
+		<br>
+    <?php endif; ?>
+
+    <?php if(isset($duplicate)): ?>
+		<div class='error'>
+			There is a user already signed up with that email. Please create an account with a different email.
+		</div>
+		<br>
+	<?php endif; ?>
 </form>

@@ -78,8 +78,10 @@ class posts_controller extends base_controller {
 	    $this->template->title   = "Users";
 
 	    # Build the query to get all the users
+	    # Make sure they can't see themselves in the list so they can't follow/unfollow self
 	    $q = "SELECT *
-	        FROM users";
+	        FROM users
+	        WHERE user_id != ".$this->user->user_id;
 
 	    # Execute the query to get all the users.
 	    # Store the result array in the variable $users

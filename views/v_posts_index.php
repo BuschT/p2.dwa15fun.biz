@@ -1,14 +1,16 @@
 <?php foreach($posts as $post): ?>
 
-<article>
+<article class="user_post">
+	<div id="user_item_content">
+		<div id="user_post_username"><?=$post['first_name']?> <?=$post['last_name']?></div>
 
-    <h1><?=$post['first_name']?> <?=$post['last_name']?> posted:</h1>
+		<div id="user_post_content"><?=$post['content']?></div>
 
-    <p><?=$post['content']?></p>
-
-    <time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
-        <?=Time::display($post['created'])?>
-    </time>
+		<div id="user_post_datetime">
+		<time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
+			<?=Time::display($post['created'])?>
+		</time></div>
+	</div>
 
 </article>
 

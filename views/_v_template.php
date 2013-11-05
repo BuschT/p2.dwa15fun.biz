@@ -10,6 +10,8 @@
 	<!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="/css/jumbotron-narrow.css" rel="stylesheet">
+    <!--- BlogTastic stylesheet -->
+	<link href="/css/blogtastic.css" rel="stylesheet">
 
 	<!-- Controller Specific JS/CSS -->
 	<?php if(isset($client_files_head)) echo $client_files_head; ?>
@@ -20,7 +22,6 @@
 	<div class="container">
 	  <div class="header">
 		<ul class="nav nav-pills pull-right">
-		  <!-- <li class="active"><a href="#">Home</a></li> -->
 		  <li><a href="/">Home</a></li>
 		  <!-- Menu for users who are logged in -->
 			<?php if($user): ?>
@@ -45,6 +46,8 @@
 	  <div class="jumbotron">
 		 <!-- Content! -->
 		 <?php if(isset($content)) echo $content; ?>
+		 <!-- Error section if need be -->
+		 <div class="error"></div>
 	  </div>
 
 	  <div class="footer">
