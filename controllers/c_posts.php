@@ -41,10 +41,13 @@ class posts_controller extends base_controller {
 
     public function p_update($postid) {
 		# Create the data array we'll use with the update method
-		$data = Array("content" => $_POST['content'], "modified"=>Time::now());
+		$data = Array("content" => htmlspecialchars($_POST['content']), "modified"=>Time::now());
 
-		# Do the update
-	    DB::instance(DB_NAME)->update("posts", $data, "WHERE post_id = '".$postid."'");
+		# Sanitize
+		$postid = DB::instance(DB_NAME)->sanitize($postid);
+
+		# Do the update, no sanitize necessary because we are using the update method
+	    DB::instance(DB_NAME)->update_row("posts", $data, "WHERE post_id = '".$postid."'");
 
 	    # Send them back to the page
         Router::redirect("/posts/manage");
@@ -139,6 +142,9 @@ class posts_controller extends base_controller {
 
 	public function unfollow($user_id_followed) {
 
+		# Sanitize
+		$user_id_followed = DB::instance(DB_NAME)->sanitize($user_id_followed);
+
 	    # Delete this connection
 	    $where_condition = 'WHERE user_id = '.$this->user->user_id.' AND user_id_followed = '.$user_id_followed;
 	    DB::instance(DB_NAME)->delete('users_users', $where_condition);
@@ -149,6 +155,9 @@ class posts_controller extends base_controller {
 	}
 
 	public function delete($postid){
+
+		# Sanitize
+		$postid = DB::instance(DB_NAME)->sanitize($postid);
 
 		# Delete this post
 		$where_condition = 'WHERE post_id = '.$postid;
@@ -164,6 +173,9 @@ class posts_controller extends base_controller {
 		# Set up the View
 		$this->template->content = View::instance("v_posts_edit");
 	    $this->template->title   = "Edit Post";
+
+		# Prevent SQL injection attacks by sanitizing the data
+		$postid = DB::instance(DB_NAME)->sanitize($postid);
 
 		# Get the existing post from the DB
 		$q = 'SELECT
@@ -186,6 +198,9 @@ class posts_controller extends base_controller {
 		# Set up the View
 		$this->template->content = View::instance('v_posts_manage');
 		$this->template->title   = "Manage Posts";
+
+		# Prevent SQL injection attacks by sanitizing the data
+		$this->user->user_id = DB::instance(DB_NAME)->sanitize($this->user->user_id);
 
 		# Query
 		$q = 'SELECT

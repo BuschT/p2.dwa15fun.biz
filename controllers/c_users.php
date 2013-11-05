@@ -11,13 +11,13 @@ class users_controller extends base_controller {
 
   	public function signup($error = NULL, $duplicate = NULL) {
 		# Setup view
-			$this->template->content = View::instance('v_users_signup');
-			$this->template->title   = "Sign Up";
-			$this->template->content->error = $error;
-			$this->template->content->duplicate = $duplicate;
+		$this->template->content = View::instance('v_users_signup');
+		$this->template->title   = $duplicate;
+		$this->template->content->error = $error;
+		$this->template->content->duplicate = $duplicate;
 
 		# Render template
-			echo $this->template;
+		echo $this->template;
     }
 
     public function p_signup() {
@@ -32,7 +32,7 @@ class users_controller extends base_controller {
 	    # Make sure this user doesn't already exist!
 		$q = "SELECT token
 			        FROM users
-			        WHERE email = '".$_POST['email']."'";
+			        WHERE email = '".htmlspecialchars$_POST['email'])."'";
 
 		$existing_user = DB::instance(DB_NAME)->select_field($q);
 		# If we find a matching user, we can't sign them up
@@ -80,8 +80,8 @@ class users_controller extends base_controller {
 	    # Retrieve the token if it's available
 	    $q = "SELECT token
 	        FROM users
-	        WHERE email = '".$_POST['email']."'
-	        AND password = '".$_POST['password']."'";
+	        WHERE email = '".htmlspecialchars$_POST['email'])."'
+	        AND password = '".htmlspecialchars($_POST['password'])."'";
 
 	    $token = DB::instance(DB_NAME)->select_field($q);
 

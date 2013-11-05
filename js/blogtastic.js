@@ -18,6 +18,12 @@ $( document ).ready(function() {
 		}
 	});
 
+	$("#form_modifypost").submit(function(e){
+		if (!validateEditPost()){
+			e.preventDefault();
+		}
+	});
+
 });
 
 function validateNewPost(){
@@ -26,7 +32,19 @@ function validateNewPost(){
 		return false;
 	}
 	if ($('#newpost_content').val().length <= 0){
-		alert("Your post cannot be empty!");
+		$(".error").html("Your post cannot be empty!");
+		return false;
+	}
+	return true;
+}
+
+function validateEditPost(){
+	if ($('#editpost_content').val().length >200){
+		$(".error").html("Please limit your post content to maximum 200 characters");
+		return false;
+	}
+	if ($('#editpost_content').val().length <= 0){
+		$(".error").html("Your post cannot be empty!");
 		return false;
 	}
 	return true;
