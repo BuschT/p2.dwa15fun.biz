@@ -34,8 +34,20 @@ class posts_controller extends base_controller {
         # Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
         DB::instance(DB_NAME)->insert('posts', $_POST);
 
-        # Quick and dirty feedback
-        echo "Your post has been added. <a href='/posts/add'>Add another</a>";
+		# Send them back to the page
+        Router::redirect("/posts/index");
+
+    }
+
+    public function p_update($postid) {
+		# Create the data array we'll use with the update method
+		$data = Array("content" => $_POST['content'], "modified"=>Time::now());
+
+		# Do the update
+	    DB::instance(DB_NAME)->update("posts", $data, "WHERE post_id = '".$postid."'");
+
+	    # Send them back to the page
+        Router::redirect("/posts/manage");
 
     }
 
@@ -49,6 +61,7 @@ class posts_controller extends base_controller {
 		$q = 'SELECT
 				posts.content,
 				posts.created,
+				posts.modified,
 				posts.user_id AS post_user_id,
 				users_users.user_id AS follower_id,
 				users.first_name,
@@ -132,6 +145,70 @@ class posts_controller extends base_controller {
 
 	    # Send them back
 	    Router::redirect("/posts/users");
+
+	}
+
+	public function delete($postid){
+
+		# Delete this post
+		$where_condition = 'WHERE post_id = '.$postid;
+		DB::instance(DB_NAME)->delete('posts', $where_condition);
+
+		# Send them back
+	    Router::redirect("/posts/manage");
+
+	}
+
+	public function edit($postid){
+
+		# Set up the View
+		$this->template->content = View::instance("v_posts_edit");
+	    $this->template->title   = "Edit Post";
+
+		# Get the existing post from the DB
+		$q = 'SELECT
+			post_id,
+			content
+		FROM posts WHERE post_id = '.$postid;
+
+		$post = DB::instance(DB_NAME)->select_rows($q);
+
+		# Pass data to the View
+		$this->template->content->post = $post;
+
+		# Render the View
+		echo $this->template;
+
+	}
+
+	public function manage(){
+
+		# Set up the View
+		$this->template->content = View::instance('v_posts_manage');
+		$this->template->title   = "Manage Posts";
+
+		# Query
+		$q = 'SELECT
+				posts.post_id,
+				posts.content,
+				posts.created,
+				posts.modified,
+				posts.user_id AS post_user_id,
+				users.first_name,
+				users.last_name
+			FROM posts
+			INNER JOIN users
+				ON posts.user_id = users.user_id
+			WHERE users.user_id = '.$this->user->user_id;
+
+		# Run the query, store the results in the variable $posts
+		$posts = DB::instance(DB_NAME)->select_rows($q);
+
+		# Pass data to the View
+		$this->template->content->posts = $posts;
+
+		# Render the View
+		echo $this->template;
 
 	}
 

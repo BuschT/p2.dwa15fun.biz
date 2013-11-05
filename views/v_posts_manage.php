@@ -7,9 +7,14 @@
 		<div id="user_post_content"><?=$post['content']?></div>
 
 		<div id="user_post_datetime">
-		<time datetime="<?=Time::display($post['modified'],'Y-m-d G:i')?>">
-			<?=Time::display($post['modified'])?>
-		</time></div>
+			<time datetime="<?=Time::display($post['modified'],'Y-m-d G:i')?>">
+				<?=Time::display($post['modified'])?>
+			</time>
+		</div>
+		<div id="manage_post">
+			<a href='/posts/edit/<?=$post['post_id']?>'>EDIT</a>
+			<a href='/posts/delete/<?=$post['post_id']?>'>DELETE</a>
+		</div>
 	</div>
 
 </article>
