@@ -3,19 +3,19 @@
 	<p class="section_intro">Please provide the following information to sign up:</p>
 	<div class="entry_form">
 		<div class="text_label">First Name</div>
-		<input type='text' name='first_name' maxlength='25' class="entry_input" id="signup_firstname">
+			<input type='text' name='first_name' maxlength='25' class="entry_input" id="signup_firstname">
 		<br><br>
 
 		<div class="text_label">Last Name</div>
-		<input type='text' name='last_name' maxlength='25' class="entry_input" id="signup_lastname">
+			<input type='text' name='last_name' maxlength='25' class="entry_input" id="signup_lastname">
 		<br><br>
 
 		<div class="text_label">Email</div>
-		<input type='text' name='email' maxlength='50' class="entry_input" id="signup_email">
+			<input type='text' name='email' maxlength='50' class="entry_input" id="signup_email">
 		<br><br>
 
 		<div class="text_label">Password</div>
-		<input type='password' name='password' maxlength='25' class="entry_input" id="signup_password">
+			<input type='password' name='password' maxlength='25' class="entry_input" id="signup_password">
 		<br><br>
 	</div>
 
