@@ -2,10 +2,10 @@
 	foreach($users as $user): ?>
 		<div class="user_item">
 			<!-- Print this user's name -->
-			<div id="user_item_name"><?=$user['first_name']?> <?=$user['last_name']?></div>
+			<div class="user_item_name"><?=$user['first_name']?> <?=$user['last_name']?></div>
 
 			<!-- If there exists a connection with this user, show a unfollow link -->
-			<div id="user_item_follow">
+			<div class="user_item_follow">
 				<?php if(isset($connections[$user['user_id']])): ?>
 					<a href='/posts/unfollow/<?=$user['user_id']?>'>Unfollow</a>
 
@@ -20,4 +20,4 @@
 } else {
 	?>There are no users to show. <?php
 }?>
-<div id="nav_hint_users" />
+<div id="nav_hint_users"></div>

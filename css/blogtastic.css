@@ -47,38 +47,40 @@ input {
 	line-height: 25px;
 }
 
-#user_post_username {
+.user_post_username {
 	font-size: 18px;
 	text-color: #000033;
 }
 
-#user_post_content {
+.user_post_content {
 	font-size: 22px;
 	font-weight: bold;
 	word-wrap: break-word;
 }
 
-#user_post_datetime, #manage_post {
+.user_post_datetime, .manage_post {
 	font-size: 16px;
 }	
 
-#newpost_content, #editpost_content {
+.newpost_content, #editpost_content {
 	width: 100%;
 	height: 200px;
 	resize: none;
 	line-height: 25px;
 }
 
-#user_item_name  {
+.user_item_name  {
 	float: left;
 }
 
-#user_item_follow {
+.user_item_follow {
 	float: right;
 }
 	
-#user_item_content {
+.user_item_content, .user_post_content {
 	margin-left: 15px;
 	margin-right: 15px;
 }
+
+
 
