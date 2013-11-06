@@ -40,8 +40,8 @@ class posts_controller extends base_controller {
         # Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
         DB::instance(DB_NAME)->insert('posts', $_POST);
 
-		# Send them back to the page
-        Router::redirect("/posts/index");
+		# Send them to the manage page so they can see their post
+        Router::redirect("/posts/manage");
 
     }
 
@@ -222,7 +222,8 @@ class posts_controller extends base_controller {
 			FROM posts
 			INNER JOIN users
 				ON posts.user_id = users.user_id
-			WHERE users.user_id = '.$this->user->user_id;
+			WHERE users_users.user_id = '.$this->user->user_id.
+			' ORDER BY posts.modified DESC';
 
 		# Run the query, store the results in the variable $posts
 		$posts = DB::instance(DB_NAME)->select_rows($q);
