@@ -92,7 +92,7 @@ function validateSignUpFields(){
 function checkUnsupportedCharacters(){
 	//^[\w ]+$
 	//$('input[class^="player-"]').filter(function() {
-    //return((" " + this.className + " ").match(/\splayer-\d+\s/) != null);
+	//return((" " + this.className + " ").match(/\splayer-\d+\s/) != null);
 }
 
 
