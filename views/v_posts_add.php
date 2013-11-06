@@ -14,3 +14,4 @@
 	</div>
 	<br>
 <?php endif; ?>
+<div id="nav_hint_addpost" />

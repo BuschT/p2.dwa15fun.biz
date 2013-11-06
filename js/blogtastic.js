@@ -1,5 +1,16 @@
 $( document ).ready(function() {
 
+	//Set the nav
+	if($("#nav_hint_latestactivity" + name).length > 0) {
+		$("#nav_posts").addClass("active");
+	} else if($("#nav_hint_addpost" + name).length > 0) {
+		$("#nav_posts_add").addClass("active");
+	} else if ($("#nav_hint_users" + name).length > 0) {
+		$("#nav_posts_users").addClass("active");
+	} else if ($("#nav_hint_manage" + name).length > 0) {
+		$("#nav_posts_manage").addClass("active");
+	}
+
 	$("#form_signup").submit(function(e){
 		if (!validateSignUpFields()){
 			e.preventDefault();
@@ -23,7 +34,6 @@ $( document ).ready(function() {
 			e.preventDefault();
 		}
 	});
-
 });
 
 function validateNewPost(){

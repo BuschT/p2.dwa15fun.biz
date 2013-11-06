@@ -26,7 +26,6 @@
 		  <!-- Menu for users who are logged in -->
 			<?php if($user): ?>
 				<li><a href='/users/logout'>Logout</a></li>
-				<li><a href='/users/profile'>Profile</a></li>
 			<!-- Menu options for users who are not logged in -->
 			<?php else: ?>
 				<li><a href='/users/signup'>Sign up</a></li>
@@ -37,10 +36,10 @@
 	  </div>
 	  <div class="content_options">
 	  	<ul class="nav nav-pills">
-	  		<li><a href="/posts">Latest Activity</a></li>
-	  		<li><a href="/posts/add">Add Post</a></li>
-	  		<li><a href="/posts/users">Users</a></li>
-	  		<li><a href="/posts/manage">Manage Posts</a></li>
+	  		<li id="nav_posts"><a href="/posts">Latest Activity</a></li>
+	  		<li id="nav_posts_add"><a href="/posts/add">Add Post</a></li>
+	  		<li id="nav_posts_users"><a href="/posts/users">Users</a></li>
+	  		<li id="nav_posts_manage"><a href="/posts/manage">Manage Posts</a></li>
 	  	</ul>
 	  </div>
 	  <div class="jumbotron">

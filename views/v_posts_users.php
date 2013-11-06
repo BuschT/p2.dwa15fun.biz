@@ -20,3 +20,4 @@
 } else {
 	?>There are no users to show. <?php
 }?>
+<div id="nav_hint_users" />

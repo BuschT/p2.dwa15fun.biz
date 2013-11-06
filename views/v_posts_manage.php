@@ -21,3 +21,4 @@
 } else {
 	?>You don't have any posts to manage.<?php
 }?>
+<div id="nav_hint_manage" />

@@ -16,3 +16,4 @@
 } else {
 	?>You don't have any posts in your feed. Try following some people to see some posts.<?php
 }?>
+<div id="nav_hint_latestactivity" />

@@ -9,3 +9,4 @@
 
 	</form>
 <?php endforeach; ?>
+<div id="nav_hint_manage" />
