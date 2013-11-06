@@ -23,8 +23,8 @@ class users_controller extends base_controller {
     public function p_signup() {
 
     	# Just in case they have JS disabled, don't let them sign up without proper data
-    	if (trim($_POST['first_name']) == false || trim($_POST['last_name']) == false
-    		|| trim($_POST['email']) == false || trim($_POST['password']) == false){
+    	if (htmlspecialchars(trim($_POST['first_name'])) == false || htmlspecialchars(trim($_POST['last_name'])) == false
+    		|| htmlspecialchars(trim($_POST['email'])) == false || htmlspecialchars(trim($_POST['password']) == false)){
     			# Send them back to the signup page
 	        	Router::redirect("/users/signup/error");
 	    }
@@ -32,12 +32,12 @@ class users_controller extends base_controller {
 	    # Make sure this user doesn't already exist!
 		$q = "SELECT token
 			        FROM users
-			        WHERE email = '".htmlspecialchars$_POST['email'])."'";
+			        WHERE email = '".htmlspecialchars($_POST['email'])."'";
 
 		$existing_user = DB::instance(DB_NAME)->select_field($q);
 		# If we find a matching user, we can't sign them up
 	    if($existing_user) {
-			Router::redirect("/users/signup/duplicate");
+			Router::redirect("/users/signup/error/duplicate");
 		}
 
 	  	# More data we want stored with the user
@@ -73,6 +73,11 @@ class users_controller extends base_controller {
 	    # Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)
 	    $_POST = DB::instance(DB_NAME)->sanitize($_POST);
 
+		# Make sure it isn't empty, just in case the JS validation failed...
+		if (trim($_POST['email']) == false || trim($_POST['password']) == false){
+			Router::redirect("/users/login/error");
+		}
+
 	    # Hash submitted password so we can compare it against one in the db
 	    $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 
@@ -80,7 +85,7 @@ class users_controller extends base_controller {
 	    # Retrieve the token if it's available
 	    $q = "SELECT token
 	        FROM users
-	        WHERE email = '".htmlspecialchars$_POST['email'])."'
+	        WHERE email = '".htmlspecialchars($_POST['email'])."'
 	        AND password = '".htmlspecialchars($_POST['password'])."'";
 
 	    $token = DB::instance(DB_NAME)->select_field($q);
@@ -131,33 +136,5 @@ class users_controller extends base_controller {
 	    Router::redirect("/");
 
 	}
-
-    public function profile($user_name = NULL) {
-
-		# If user is blank, they're not logged in; redirect them to the login page
-    	if(!$this->user) {
-        	Router::redirect('/users/login');
-    	}
-
-		#Set up the View
-		$this->template->content = View::instance('v_users_profile');
-		$this->template->title = "Profile";
-
-		#Load client files
-		$client_files_head = Array('/css/profile.css',
-									'/css/master.css');
-
-		$client_files_body = Array('/js/profile.js');
-
-		$this->template->client_files_head = Utils::load_client_files($client_files_head);
-
-		$this->template->client_files_body = Utils::load_client_files($client_files_body);
-
-		#Pass data to the view
-		$this->template->content->user_name = $user_name;
-
-		#Display the View
-		echo $this->template;
-    }
 
 } # end of the class

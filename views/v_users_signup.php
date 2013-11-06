@@ -22,16 +22,17 @@
     <input type='submit' value='Sign up'>
 
 	<?php if(isset($error)): ?>
-		<div class='error'>
-			Signup failed. Please make sure you fill out all forms properly and turn your javascript on!
-		</div>
-		<br>
+	    <?php if(isset($duplicate)): ?>
+			<div class='error'>
+				There is a user already signed up with that email. Please create an account with a different email.
+			</div>
+			<br>
+		<?php else: ?>
+			<div class='error'>
+				Signup failed. Please make sure you fill out all forms properly and turn your javascript on!
+			</div>
+			<br>
+    	<?php endif; ?>
     <?php endif; ?>
 
-    <?php if(isset($duplicate)): ?>
-		<div class='error'>
-			There is a user already signed up with that email. Please create an account with a different email.
-		</div>
-		<br>
-	<?php endif; ?>
 </form>

@@ -7,3 +7,10 @@
     <input type='submit' value='New post'>
 
 </form>
+
+<?php if(isset($error)): ?>
+	<div class='error'>
+		Unable to add post. Please make sure there is actual content in your post. It cannot be empty.
+	</div>
+	<br>
+<?php endif; ?>

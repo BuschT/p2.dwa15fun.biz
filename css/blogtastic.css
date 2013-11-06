@@ -54,6 +54,7 @@ input {
 #user_post_content {
 	font-size: 22px;
 	font-weight: bold;
+	word-wrap: break-word;
 }
 
 #user_post_datetime, #manage_post {
@@ -77,5 +78,6 @@ input {
 	
 #user_item_content {
 	margin-left: 15px;
+	margin-right: 15px;
 }
 
