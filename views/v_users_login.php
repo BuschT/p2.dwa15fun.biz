@@ -3,11 +3,11 @@
 	<p class="section_intro">You Must Log In To Continue</p>
 	<div class="entry_form">
 		<div class="text_label">Email</div>
-		<input type='text' name='email' class="entry_input" id="signin_email">
+			<input type='text' name='email' class="entry_input" id="signin_email">
 		<br><br>
 
 		<div class="text_label">Password</div>
-		<input type='password' name='password' class="entry_input" id="signin_password">
+			<input type='password' name='password' class="entry_input" id="signin_password">
 		<br><br>
 	</div>
 
