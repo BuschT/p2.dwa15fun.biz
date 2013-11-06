@@ -8,7 +8,7 @@
 
 				<div class="user_post_datetime">
 					<time datetime="<?=Time::display($post['modified'],'Y-m-d G:i')?>">
-						<?=Time::display($post['modified'])?>
+					<?=Time::display($post['modified'])?>
 					</time>
 				</div>
 				<div class="manage_post">
